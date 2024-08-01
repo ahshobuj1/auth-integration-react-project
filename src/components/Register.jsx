@@ -15,8 +15,7 @@ const Register = () => {
             .then((res) => console.log(res.user))
             .catch((err) => console.log(err.message));
 
-        e.target.email.value = '';
-        e.target.password.value = '';
+        e.target.reset();
     };
 
     return (

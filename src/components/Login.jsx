@@ -14,6 +14,9 @@ const Login = () => {
         loginUser(email, password)
             .then((res) => console.log('user logged successfully', res.user))
             .catch((err) => console.log(err.message));
+
+        e.target.email.value = '';
+        e.target.password.value = '';
     };
 
     return (

@@ -1,6 +1,10 @@
+import {useContext} from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import {AuthContext} from './auth/UserContext';
 
 const Header = () => {
+    const {user} = useContext(AuthContext);
+
     const Navlinks = (
         <>
             <li>
@@ -11,6 +15,7 @@ const Header = () => {
             </li>
         </>
     );
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -48,6 +53,7 @@ const Header = () => {
                     <ul className="menu menu-horizontal px-1">{Navlinks}</ul>
                 </div>
                 <div className="navbar-end">
+                    <a href="">{user.email}</a>
                     <a className="btn btn-sm btn-neutral">Button</a>
                 </div>
             </div>

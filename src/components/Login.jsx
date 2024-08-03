@@ -1,9 +1,10 @@
 import {useContext} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from './auth/UserContext';
+import {FaGoogle} from 'react-icons/fa';
 
 const Login = () => {
-    const {loginUser} = useContext(AuthContext);
+    const {loginUser, logInWithGoogle} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLoggedIn = (e) => {
@@ -13,11 +14,19 @@ const Login = () => {
         console.log(email, password);
 
         loginUser(email, password)
-            .then((res) => console.log('user logged successfully', res.user))
+            .then((res) => {
+                console.log('user logged successfully', res.user);
+                e.target.reset();
+            })
             .catch((err) => console.log(err.message));
 
-        e.target.reset();
         navigate('/');
+    };
+
+    const handleGoogleLogIn = () => {
+        logInWithGoogle()
+            .then((result) => console.log(result.user))
+            .catch((err) => console.log(err.message));
     };
 
     return (
@@ -81,6 +90,18 @@ const Login = () => {
                                 </Link>
                             </p>
                         </form>
+                        <div className="my-4 px-10">
+                            <h2 className="text-2xl">
+                                Sign up with social link
+                            </h2>
+                            <div className=" flex justify-center mt-3">
+                                <button
+                                    onClick={handleGoogleLogIn}
+                                    className="text-2xl btn text-red-500">
+                                    <FaGoogle />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
